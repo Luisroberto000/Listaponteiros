@@ -1,1 +1,352 @@
+Nome: LUIS ROBERTO BARBOSA DE LIMA
+Matricula: 20230074728
+Questao 1:
+#include <stdio.h>
 
+int main() {
+    int i = 3, j = 5;
+    int *p, *q;
+    p = &i;
+    q = &j;
+
+    printf("p == &i: %d\n", p == &i);
+    printf("*p - *q: %d\n", *p - *q);
+    printf("**&p: %d\n", **&p);
+    printf("3 - *p/(*q) + 7: %d\n", 3 - *p/(*q) + 7);
+
+    return 0;
+}
+---------------------------
+Questao 2:
+    #include <stdio.h>
+
+int main() {
+  int i=5, *p;
+  p = &i;
+  printf("%p %p %d %d %d %d\n", p, p+1, *p+2, **&p, 3**p, **&p+4);// o p mostra o endereço de i, p+1 mostra o endereço de i+1, *p+2 mostra o valor de i+2, **&p mostra o valor de i, 3**p mostra o valor de i*3, **&p+4 mostra o valor de i+4
+}
+---------------------------
+Questao 3:
+  #include <stdio.h>
+
+int main() {
+    int i = 3, j = 5;
+    int *p, *q;
+
+    p = &i; // Legal
+    // *q = &j; // Ilegal
+    p = &*&i; // Legal
+    // i = (*&)j; // Ilegal
+    i = *&j; // Legal
+    i = *&*&j; // Legal
+    // q = *p; // Ilegal
+    i = (*p)++ + *q; // Legal
+
+    return 0;
+}
+---------------------------
+Questao 4:
+  #include <stdio.h>
+
+int main() {
+int valor;
+int *p1;
+float temp;
+float *p2;
+char aux;
+char *nome = "Ponteiros";
+char *p3;
+int idade;
+int vetor[3];
+int *p4;
+int *p5;
+/* (a) */
+valor = 10;
+p1 = &valor;
+*p1 = 20;
+printf("%d \n", valor);
+  //Resultado ERRADO, Tem que sair o endereço de "VA"
+/* (b) */
+temp = 26.5;
+p2 = &temp;
+*p2 = 29.0;
+printf("%.1f \n", temp);
+/* (c) */
+p3 = &nome[0];
+aux = *p3;
+printf("%c \n", aux);
+  /* (d) */
+  p3 = &nome[4];
+  aux = *p3;
+  printf("%c \n", aux);
+  /* (e) */
+  p3 = nome;
+  printf("%c \n", *p3);
+  /* (f) */
+  p3 = p3 + 4;
+  printf("%c \n", *p3);
+  /* (g) */
+  p3--;
+  printf("%c \n", *p3);
+  /* (h) */
+  vetor[0] = 31;
+  vetor[1] = 45;
+  vetor[2] = 27;
+  p4 = vetor;
+  idade = *p4;
+  printf("%d \n", idade);
+  /* (i) */
+  p5 = p4 + 1;
+  idade = *p5;
+  printf("%d \n", idade);
+  /* (j) */
+  p4 = p5 + 1;
+  idade = *p4;
+  printf("%d \n", idade);
+  /* (l) */
+  p4 = p4 - 2;
+  idade = *p4;
+  printf("%d \n", idade);
+  /* (m) */
+  p5 = &vetor[2] - 1;
+  printf("%d \n", *p5);
+  /* (n) */
+  p5++;
+  printf("%d \n", *p5);
+  return(0);
+  }
+---------------------------
+Questao 5:
+  int main(void){
+float vet[5] = {1.1,2.2,3.3,4.4,5.5};//vetor
+float *f;//ponteiro
+int i;
+f = vet;
+printf("contador/valor/valor/endereco/endereco\n");
+for(i = 0 ; i <= 4 ; i++){//loop que percorre todos os elementos do vetor
+printf("i = %d",i);//imprime o indice
+printf(" vet[%d] = %.1f",i, vet[i]);//imprime o valor elemento no vetor
+printf(" *(f + %d) = %.1f",i, *(f+i));//imprime o valor apontado pelo ponteiro "f"(f+i)
+printf(" &vet[%d] = %X",i, &vet[i]);//imprimeo endereço do elemento no vetor
+printf(" (f + %d) = %X",i, f+i);
+printf("\n");//imprime o endereço calculado por (f+i)
+}
+}
+---------------------------
+Questao 6:
+  ◦ *(pulo + 2);//CORRETA; pois ela aponta para o terceiro elemento do vetor
+◦ *(pulo + 4);//ERRADA; pois ela aponta para o quinto elmento do vetor
+◦ pulo + 4;//ERRADA; pois ela aponta para o quinto elmento do vetor
+◦ pulo + 2;//ERRADA; por mais que leva ao terceiro elemento do vetor, ela não aponta para o terceiro elemento do vetor
+---------------------------
+Questao 7:
+  #include <stdio.h>
+
+int main() {
+    int mat[4], *p, x;
+
+    // p = mat + 1; é válida.
+    // Faz p apontar para o segundo elemento do array mat. Adicionar 1 move o ponteiro para o próximo elemento.
+    p = mat + 1;
+
+    // p = mat; é válida.
+    // Faz p apontar para o primeiro elemento do array mat.
+    // Em C, o nome do array é equivalente a um ponteiro para o seu primeiro elemento.
+    p = mat;
+
+    // x = (*mat); é válida.
+    // *mat dereferencia o primeiro elemento do array mat,
+    // e o valor desse elemento é atribuído à variável x.
+    // Como mat é um array de inteiros, *mat é equivalente a mat[0].
+    x = (*mat);
+
+    // Imprime os valores para verificar se as expressões funcionam como esperado.
+    printf("Primeiro elemento de mat: %d\n", mat[0]);
+    printf("Segundo elemento de mat: %d\n", *(mat + 1));
+    printf("Valor de x: %d\n", x);
+
+    return 0;
+}
+
+---------------------------
+Questao 8:
+  int main(){
+int vet[] = {4, 9, 13};
+int i;
+for(i=0;i<3;i++){
+printf("%d ", *(vet+i));
+}
+}
+//Mostra os 3 indices do vetor em decimal
+
+int main(){
+int vet[] = {4, 9, 13};
+int i;
+for(i=0;i<3;i++){
+printf("%X ",vet+i);
+}
+}
+//Mostra os 3 indices do vetor em hexadecimal
+---------------------------
+Questao 9:
+  #include <stdio.h>
+struct teste{
+int x = 3;
+char nome[] = "jose";
+};
+main(){
+struct teste *s;
+printf("%d", s->x);
+printf("%s", s->name);
+}
+//ocasiona em um erro de compilacao
+---------------------------
+Questao 10:
+  #include <stdio.h>
+void main(){
+int const *x = 3;
+printf("%d", ++(*x));
+}
+//ocasiona em um erro de compilacao
+---------------------------
+Questao 11:
+  #include <stdio.h>
+
+int main() {
+    char xchar[4];
+    int xint[4];
+    float xfloat[4];
+    double xdouble[4];
+
+    printf("Endereços de memória para x char:\n");
+    for (int i = 0; i < 4; i++) {
+        printf("xchar[%d]: %p\n", i, &xchar[i]);
+    }
+
+    printf("\nEndereços de memória para x int:\n");
+    for (int i = 0; i < 4; i++) {
+        printf("xint[%d]: %p\n", i, &xint[i]);
+    }
+
+    printf("\nEndereços de memória para x float:\n");
+    for (int i = 0; i < 4; i++) {
+        printf("xfloat[%d]: %p\n", i, &xfloat[i]);
+    }
+
+    printf("\nEndereços de memória para x double:\n");
+    for (int i = 0; i < 4; i++) {
+        printf("xdouble[%d]: %p\n", i, &xdouble[i]);
+    }
+
+    return 0;
+}
+//espera-se que os endereços de memória para cada tipo de variável sejam diferentes. char ocupa 1 byte, int ocupa 4 bytes, float ocupa 4 bytes e double ocupa 8 bytes, port
+
+---------------------------
+Questao 12:
+  <resposta da questao 2>
+---------------------------
+Questao 13:
+  <resposta da questao 2>
+---------------------------
+Questao 14:
+  <resposta da questao 2>
+---------------------------
+Questao 15:
+  <resposta da questao 2>
+---------------------------
+Questao 16:
+  <resposta da questao 2>
+---------------------------
+Questao 17:
+  <resposta da questao 2>
+---------------------------
+Questao 18:
+  <resposta da questao 2>
+---------------------------
+Questao 19:
+  <resposta da questao 2>
+---------------------------
+Questao 20:
+  <resposta da questao 2>
+---------------------------
+Questao 21:
+  //A 
+void f( ){
+void *s;
+s = malloc(50);
+free(s);
+}
+//não existe vazamento de memória, a memória é alocada e depois liberada corretamente
+
+//B 
+int f( ){
+float *a;
+return 0;
+}
+//não existe alocação de memória
+
+//C 
+int f(char *data){
+void *s;
+s = malloc(50);
+int size = strlen(data);
+if (size > 50)
+return(-1);
+free(s);
+return 0;
+}
+//não existe vazamento de memória, a memória é alocada e depois liberada corretamente
+
+//D 
+int *f(int n){
+int *num = malloc(sizeof(int)*n);
+return num;
+}
+int main(void){
+int *num;
+num = f(10);
+free(num);
+return 0;
+}
+//não existe vazamento de memória, a memória é alocada e depois liberada corretamente
+
+//E 
+void f(int n){
+char *m = malloc(10);
+char *n = malloc(10);
+free(m);
+m = n;
+free(m);
+free(n);
+}
+//existe um vazamento de memória, a memória alocada em "m" não foi liberada antes de apontar para outra memória
+---------------------------
+Questao 22:
+  #include <stdio.h>
+int main(){
+int a, b;
+int x, y, z;
+scanf("%d %d", &a, &b);
+x = a; y = b; z = a + b;
+while (a) {
+x = x | b;
+y = y ^ a;
+z = z & (a+b);
+a = a >> 1;
+b = b << 1;
+}
+printf ("%d %d %d\n", x, y, z);
+return 0;
+}
+//Após compilar o programa no replit recebi os seguintes resultados: x = 15, y = 13 e z = 0.
+---------------------------
+Questao 23:
+  <resposta da questao 2>
+---------------------------
+Questao 24:
+  <resposta da questao 2>
+---------------------------
+Questao 25:
+  <resposta da questao 2>
+---------------------------
