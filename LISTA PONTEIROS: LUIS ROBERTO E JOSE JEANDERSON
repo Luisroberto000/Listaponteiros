@@ -27,94 +27,108 @@ int main() {
 }
 ---------------------------
 Questao 3:
-  #include <stdio.h>
+ #include <stdio.h>
 
 int main() {
-    int i = 3, j = 5;
-    int *p, *q;
+    int i = 3, j = 5; 
+    int *p, *q; 
 
-    p = &i; // Legal
-    // *q = &j; // Ilegal
-    p = &*&i; // Legal
-    // i = (*&)j; // Ilegal
-    i = *&j; // Legal
-    i = *&*&j; // Legal
-    // q = *p; // Ilegal
-    i = (*p)++ + *q; // Legal
+    p = &i; // p recebe o endereço de i, isso é legal.
+    // *q = &j; // Tentativa ilegal de atribuir o endereço de j a *q, que é o valor apontado por q.
+    p = &*&i; // p recebe o endereço do valor no endereço de i, isso é redundante mas legal.
+    // i = (*&)j; // Sintaxe ilegal, tentativa de desreferenciar e referenciar sem um ponteiro.
+    i = *&j; // i recebe o valor no endereço de j, isso é legal.
+    i = *&*&j; // i recebe o valor no endereço do endereço de j, redundante mas legal.
+    // q = *p; // Tentativa ilegal de atribuir o valor apontado por p a q, que é um ponteiro.
+    i = (*p)++ + *q; // O valor apontado por p é incrementado e depois somado ao valor apontado por q, isso é legal se q for inicializado.
 
     return 0;
-}
+} 
 ---------------------------
 Questao 4:
-  #include <stdio.h>
+ #include <stdio.h>
 
 int main() {
-int valor;
-int *p1;
-float temp;
-float *p2;
-char aux;
-char *nome = "Ponteiros";
-char *p3;
-int idade;
-int vetor[3];
-int *p4;
-int *p5;
-/* (a) */
-valor = 10;
-p1 = &valor;
-*p1 = 20;
-printf("%d \n", valor);
-  //Resultado ERRADO, Tem que sair o endereço de "VA"
-/* (b) */
-temp = 26.5;
-p2 = &temp;
-*p2 = 29.0;
-printf("%.1f \n", temp);
-/* (c) */
-p3 = &nome[0];
-aux = *p3;
-printf("%c \n", aux);
-  /* (d) */
-  p3 = &nome[4];
-  aux = *p3;
-  printf("%c \n", aux);
-  /* (e) */
-  p3 = nome;
-  printf("%c \n", *p3);
-  /* (f) */
-  p3 = p3 + 4;
-  printf("%c \n", *p3);
-  /* (g) */
-  p3--;
-  printf("%c \n", *p3);
-  /* (h) */
-  vetor[0] = 31;
-  vetor[1] = 45;
-  vetor[2] = 27;
-  p4 = vetor;
-  idade = *p4;
-  printf("%d \n", idade);
-  /* (i) */
-  p5 = p4 + 1;
-  idade = *p5;
-  printf("%d \n", idade);
-  /* (j) */
-  p4 = p5 + 1;
-  idade = *p4;
-  printf("%d \n", idade);
-  /* (l) */
-  p4 = p4 - 2;
-  idade = *p4;
-  printf("%d \n", idade);
-  /* (m) */
-  p5 = &vetor[2] - 1;
-  printf("%d \n", *p5);
-  /* (n) */
-  p5++;
-  printf("%d \n", *p5);
-  return(0);
-  }
+  int valor;
+  int *p1;
+  float temp;
+  float *p2;
+  char aux;
+  char *nome = "Ponteiros";
+  char *p3;
+  int idade;
+  int vetor[3];
+  int *p4;
+  int *p5;
+
+  /* (a) */
+  valor = 10;
+  p1 = &valor;
+  *p1 = 20;
+  printf("%d \n", valor); // Saída esperada: 20
+
+  /* (b) */
+  temp = 26.5;
+  p2 = &temp;
+  *p2 = 29.0;
+  printf("%.1f \n", temp); // Saída esperada: 29.0
+
+  /* (c) */
+  p3 = &nome[0];
+  aux = *p3;
+  printf("%c \n", aux); // Saída esperada: P
+
+  /* (d) */
+  p3 = &nome[4];
+  aux = *p3;
+  printf("%c \n", aux); // Saída esperada: e
+
+  /* (e) */
+  p3 = nome;
+  printf("%c \n", *p3); // Saída esperada: P
+
+  /* (f) */
+  p3 = p3 + 4;
+  printf("%c \n", *p3); // Saída esperada: e
+
+  /* (g) */
+  p3--;
+  printf("%c \n", *p3); // Saída esperada: t
+
+  /* (h) */
+  vetor[0] = 31;
+  vetor[1] = 45;
+  vetor[2] = 27;
+  p4 = vetor;
+  idade = *p4;
+  printf("%d \n", idade); // Saída esperada: 31
+
+  /* (i) */
+  p5 = p4 + 1;
+  idade = *p5;
+  printf("%d \n", idade); // Saída esperada: 45
+
+  /* (j) */
+  p4 = p5 + 1;
+  idade = *p4;
+  printf("%d \n", idade); // Saída esperada: 27
+
+  /* (l) */
+  p4 = p4 - 2;
+  idade = *p4;
+  printf("%d \n", idade); // Saída esperada: 31
+
+  /* (m) */
+  p5 = &vetor[2] - 1;
+  printf("%d \n", *p5); // Saída esperada: 45
+
+  /* (n) */
+  p5++;
+  printf("%d \n", *p5); // Saída esperada: 27
+
+  return(0);
+}
+
 ---------------------------
 Questao 5:
   int main(void){
